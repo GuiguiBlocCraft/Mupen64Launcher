@@ -34,13 +34,15 @@ class MyWindow(QMainWindow):
 		files = listdir(path)
 		files.sort()
 
+		nbRoms = 0
+
 		for file in files:
 			if file.endswith(".z64") or file.endswith(".n64") or file.endswith(".v64"):
 				self.list.addItem(file)
+				nbRoms += 1
 
-		print(str(len(files)) + " file(s) loaded")
-
-		self.text.setText(str(len(files)) + " fichier(s) chargé(s)")
+		print(str(nbRoms) + " file(s) loaded")
+		self.text.setText(str(nbRoms) + " fichier(s) chargé(s)")
 
 	def executeMupen(self):
 		name = self.list.selectedItems()[0].text()
