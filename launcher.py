@@ -69,7 +69,7 @@ class MyWindow(QMainWindow):
 		self.show()
 
 	def listClicked(self):
-		if self.list.selectedItems()[0] != None:
+		if len(self.list.selectedItems()) > 0:
 			name = self.list.selectedItems()[0].text()
 
 			self.info.setText("ROM selected: " + name)
