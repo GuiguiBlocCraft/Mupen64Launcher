@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys
-from os import listdir, system
+from os import listdir, system, path, environ
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -62,7 +62,22 @@ class MyWindow(QMainWindow):
 def window():
 	app = QApplication(sys.argv)
 	win = MyWindow()
+	fileExist = False
+
+	path = environ.get("PATH")
+
+	# Check if Mupen exists
+	if path != None:
+		for p in path.split(":"):
+			if path.exists(path.join(p, "mupen64plus")):
+				fileExist = True
+				break
+	
 	win.show()
+	
+	if fileExist == False:
+		win.info.setText("WARNING: Mupen64Plus is not installed!")
+	
 	sys.exit(app.exec_())
 
 window()
